@@ -11,7 +11,13 @@ import {
   Smartphone,
   Layers,
   History,
-  ArrowUpRight
+  ArrowUpRight,
+  Code2,
+  Terminal,
+  Cloud,
+  Settings,
+  MonitorSmartphone,
+  Palette
 } from 'lucide-react';
 
 /**
@@ -227,7 +233,7 @@ const Navbar = () => {
           HA.
         </div>
         <div className="hidden md:flex gap-10 items-center">
-          {['About', 'Projects', 'Experience'].map(item => (
+          {['About', 'Projects', 'Stack', 'Experience'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-400 hover:text-white transition-colors">{item}</a>
           ))}
           <a href={`mailto:${DATA.profile.email}`} className="px-6 py-2 bg-white text-black text-[10px] font-black tracking-widest uppercase rounded-full hover:bg-teal-500 transition-all">Connect</a>
@@ -251,7 +257,7 @@ export default function App() {
           <FadeInSection className="order-2 md:order-1">
             <div className="flex items-center gap-4 mb-6">
               <div className="h-[2px] w-12 bg-teal-500"></div>
-              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer(Js, React Native)</span>
+              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer (Js, React Native)</span>
             </div>
             
             <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8 overflow-hidden">
