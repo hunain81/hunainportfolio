@@ -17,7 +17,9 @@ import {
   Cloud,
   Settings,
   MonitorSmartphone,
-  Palette
+  Palette,
+  Award,
+  ExternalLink
 } from 'lucide-react';
 
 /**
@@ -147,6 +149,14 @@ const DATA = {
       ]
     }
   ],
+  certificates: [
+    {
+      title: "JavaScript (Advanced)",
+      issuer: "HackerRank",
+      link: "https://www.hackerrank.com/certificates/56bdd2f38465",
+      date: "Verified"
+    }
+  ],
   education: {
     degree: "BS Computer Science",
     institution: "COMSATS University Islamabad",
@@ -233,7 +243,7 @@ const Navbar = () => {
           HA.
         </div>
         <div className="hidden md:flex gap-10 items-center">
-          {['About', 'Projects', 'Stack', 'Experience'].map(item => (
+          {['Experience', 'About', 'Projects', 'Stack', 'Certificates'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-400 hover:text-white transition-colors">{item}</a>
           ))}
           <a href={`mailto:${DATA.profile.email}`} className="px-6 py-2 bg-white text-black text-[10px] font-black tracking-widest uppercase rounded-full hover:bg-teal-500 transition-all">Connect</a>
@@ -313,6 +323,48 @@ export default function App() {
           DEVELOPER
         </div>
       </header>
+
+      {/* EXPERIENCE SECTION - Moved above About */}
+      <section id="experience" className="py-40 px-6 md:px-12 bg-white/[0.02]">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-24 flex flex-col items-center text-center">
+            <div className="w-px h-24 bg-gradient-to-b from-transparent to-teal-500 mb-8"></div>
+            <div className="flex items-center gap-3 text-teal-500 font-mono text-sm tracking-[0.4em] uppercase mb-4">
+              <History size={16} />
+              <span>Career Timeline</span>
+            </div>
+            <div className="text-5xl md:text-7xl font-black text-white tracking-tighter">Professional History</div>
+          </div>
+          
+          <div className="space-y-32 relative">
+            <div className="absolute left-[7px] md:left-[100px] top-0 bottom-0 w-px bg-white/10 hidden md:block"></div>
+            {DATA.experience.map((exp, idx) => (
+              <FadeInSection key={idx}>
+                <div className="grid md:grid-cols-[200px_1fr] gap-12 group relative">
+                  <div className="relative">
+                    <div className="text-teal-500 font-black text-xl tracking-tighter pt-1 opacity-60 group-hover:opacity-100 transition-opacity">
+                      {exp.period}
+                    </div>
+                    <div className="absolute right-[-106px] top-3 w-3 h-3 rounded-full bg-teal-500 hidden md:block border-4 border-[#050505] z-10 group-hover:scale-150 transition-transform"></div>
+                  </div>
+                  <div>
+                    <h3 className="text-4xl font-black text-white mb-2 tracking-tighter group-hover:text-teal-500 transition-colors uppercase">{exp.role}</h3>
+                    <div className="text-xl text-slate-400 font-bold mb-8 italic">{exp.company}</div>
+                    <ul className="space-y-6">
+                      {exp.highlights.map((h, i) => (
+                        <li key={i} className="flex gap-4 text-slate-400 font-light text-lg leading-relaxed">
+                          <div className="mt-3 w-1.5 h-1.5 rounded-full bg-teal-500 shrink-0 shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ABOUT SECTION */}
       <section id="about" className="py-40 px-6 md:px-12 relative overflow-hidden">
@@ -422,42 +474,47 @@ export default function App() {
         </div>
       </section>
 
-      {/* EXPERIENCE SECTION */}
-      <section id="experience" className="py-40 px-6 md:px-12 bg-white/[0.02]">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-24 flex flex-col items-center text-center">
-            <div className="w-px h-24 bg-gradient-to-b from-transparent to-teal-500 mb-8"></div>
+      {/* CERTIFICATES SECTION */}
+      <section id="certificates" className="py-40 px-6 md:px-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-24">
             <div className="flex items-center gap-3 text-teal-500 font-mono text-sm tracking-[0.4em] uppercase mb-4">
-              <History size={16} />
-              <span>Career Timeline</span>
+              <Award size={16} />
+              <span>Accreditations</span>
             </div>
-            <div className="text-5xl md:text-7xl font-black text-white tracking-tighter">Professional History</div>
+            <div className="text-5xl md:text-7xl font-black text-white tracking-tighter">Certifications</div>
           </div>
-          
-          <div className="space-y-32 relative">
-            <div className="absolute left-[7px] md:left-[100px] top-0 bottom-0 w-px bg-white/10 hidden md:block"></div>
-            {DATA.experience.map((exp, idx) => (
-              <FadeInSection key={idx}>
-                <div className="grid md:grid-cols-[200px_1fr] gap-12 group relative">
-                  <div className="relative">
-                    <div className="text-teal-500 font-black text-xl tracking-tighter pt-1 opacity-60 group-hover:opacity-100 transition-opacity">
-                      {exp.period}
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {DATA.certificates.map((cert, i) => (
+              <FadeInSection key={i} delay={i * 100}>
+                <a 
+                  href={cert.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group relative p-10 bg-slate-900/30 border border-white/5 rounded-[2.5rem] hover:bg-teal-500/5 hover:border-teal-500/30 transition-all block overflow-hidden"
+                >
+                  <div className="absolute -right-8 -top-8 text-teal-500/5 rotate-12 group-hover:scale-125 transition-transform">
+                    <Award size={180} />
+                  </div>
+                  
+                  <div className="flex justify-between items-start mb-8 relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 flex items-center justify-center text-teal-500 group-hover:scale-110 transition-transform">
+                      <Award size={28} />
                     </div>
-                    <div className="absolute right-[-106px] top-3 w-3 h-3 rounded-full bg-teal-500 hidden md:block border-4 border-[#050505] z-10 group-hover:scale-150 transition-transform"></div>
+                    <div className="p-3 rounded-full bg-white/5 text-slate-500 group-hover:text-white group-hover:bg-teal-500 transition-all">
+                      <ExternalLink size={18} />
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-4xl font-black text-white mb-2 tracking-tighter group-hover:text-teal-500 transition-colors uppercase">{exp.role}</h3>
-                    <div className="text-xl text-slate-400 font-bold mb-8 italic">{exp.company}</div>
-                    <ul className="space-y-6">
-                      {exp.highlights.map((h, i) => (
-                        <li key={i} className="flex gap-4 text-slate-400 font-light text-lg leading-relaxed">
-                          <div className="mt-3 w-1.5 h-1.5 rounded-full bg-teal-500 shrink-0 shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
+
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-black text-white mb-2 tracking-tighter group-hover:text-teal-400 transition-colors uppercase">{cert.title}</h3>
+                    <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/5">
+                      <span className="font-mono text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">{cert.issuer}</span>
+                      <span className="px-3 py-1 bg-teal-500/10 text-teal-500 text-[10px] font-bold rounded-lg">{cert.date}</span>
+                    </div>
                   </div>
-                </div>
+                </a>
               </FadeInSection>
             ))}
           </div>
@@ -477,7 +534,7 @@ export default function App() {
               <div className="grid md:grid-cols-2 gap-16 items-start">
                 <div className="space-y-12">
                   <p className="text-2xl text-slate-400 font-light max-w-md leading-relaxed">
-                    Currently accepting new projects and architectural consulting opportunities.
+                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great..
                   </p>
                   
                   <div className="group inline-flex items-center gap-6 cursor-pointer">
