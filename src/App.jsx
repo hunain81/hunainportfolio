@@ -27,7 +27,7 @@ const DATA = {
     email: "hunainashfaq81@gmail.com",
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
-    image: "/mypic.jpg", // Path to your image in public folder
+    image: "/mypic.png", // Path to your image in public folder
     summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems. Specialized in bridging the gap between System Architecture and Machine Learning to drive predictive operational efficiency."
   },
   about: {
