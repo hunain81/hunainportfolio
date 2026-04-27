@@ -22,9 +22,23 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-/**
- * PORTFOLIO DATA OBJECT
- */
+// Custom SVG React Icon Component based on the user's image
+const ReactLogoIcon = ({ className = "w-6 h-6" }) => (
+  <svg 
+    viewBox="-11.5 -10.23174 23 20.46348" 
+    className={className}
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="0" cy="0" r="2.05" fill="currentColor" />
+    <g stroke="currentColor" strokeWidth="1" fill="none">
+      <ellipse rx="11" ry="4.2" />
+      <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+      <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+    </g>
+  </svg>
+);
+
 const DATA = {
   profile: {
     name: "HUNAIN ASHFAQ",
@@ -189,7 +203,6 @@ const InteractiveBackground = () => {
       />
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-teal-900/10 rounded-full blur-[120px] animate-blob-morph"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-emerald-900/10 rounded-full blur-[120px] animate-blob-morph animation-delay-2000"></div>
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
     </div>
   );
 };
@@ -238,15 +251,20 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div className="text-2xl font-black text-white flex items-center gap-2">
-          <div className="w-2 h-2 bg-teal-500 rounded-full animate-pulse"></div>
-          HA.
+        <div className="flex items-center gap-4">
+          {/* React Icon as requested from the image */}
+          <div className="bg-[#1a1a1a] p-2 rounded-lg border border-white/5 shadow-[0_0_15px_rgba(20,184,166,0.3)]">
+            <ReactLogoIcon className="w-5 h-5 text-teal-400 animate-[spin_10s_linear_infinite]" />
+          </div>
+          <div className="text-2xl font-black text-white flex items-center gap-2">
+            HA.
+          </div>
         </div>
         <div className="hidden md:flex gap-10 items-center">
           {['Experience', 'About', 'Projects', 'Stack', 'Certificates'].map(item => (
             <a key={item} href={`#${item.toLowerCase()}`} className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-400 hover:text-white transition-colors">{item}</a>
           ))}
-          <a href={`mailto:${DATA.profile.email}`} className="px-6 py-2 bg-white text-black text-[10px] font-black tracking-widest uppercase rounded-full hover:bg-teal-500 transition-all">Connect</a>
+          <a href={`mailto:${DATA.profile.email}`} className="px-6 py-2 bg-white text-black text-[10px] font-black tracking-widest uppercase rounded-full hover:bg-teal-500 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">Connect</a>
         </div>
       </div>
     </nav>
@@ -263,11 +281,12 @@ export default function App() {
       <header className="relative min-h-screen flex items-center px-6 md:px-12 z-10 pt-20">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
           
-          {/* Text Content (Left) */}
           <FadeInSection className="order-2 md:order-1">
             <div className="flex items-center gap-4 mb-6">
-              <div className="h-[2px] w-12 bg-teal-500"></div>
-              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer (Js, React Native)</span>
+              <div className="bg-[#111] p-1.5 rounded-md border border-teal-500/20">
+                <ReactLogoIcon className="w-4 h-4 text-teal-500" />
+              </div>
+              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer</span>
             </div>
             
             <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8 overflow-hidden">
@@ -278,20 +297,19 @@ export default function App() {
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-400 font-light max-w-xl leading-relaxed mb-10">
-              Building high-performance <span className="text-white font-medium">React Native</span> apps and scalable digital ecosystems that drive enterprise efficiency.
+              Building high-performance <span className="text-white font-medium underline decoration-teal-500/40 underline-offset-8">React Native</span> apps and scalable digital ecosystems.
             </p>
             
             <div className="flex gap-4">
-              <a href={DATA.profile.github} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
-                <Github />
+              <a href={DATA.profile.github} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl">
+                <Github size={20} />
               </a>
-              <a href={DATA.profile.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all group">
-                <Linkedin />
+              <a href={DATA.profile.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all shadow-xl">
+                <Linkedin size={20} />
               </a>
             </div>
           </FadeInSection>
 
-          {/* Large Profile Picture (Right) */}
           <FadeInSection className="order-1 md:order-2 flex justify-center md:justify-end" delay={300}>
             <div className="relative group">
               <div className="absolute -inset-4 border border-teal-500/20 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
@@ -308,24 +326,20 @@ export default function App() {
                     e.target.nextSibling.classList.add('flex');
                   }}
                 />
-                {/* Fallback UI */}
                 <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
                   <span className="text-teal-500 font-black text-6xl opacity-20">HA</span>
                 </div>
               </div>
-              <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center text-black shadow-xl">
-                <Cpu size={20} />
+              <div className="absolute -bottom-4 -right-4 w-14 h-14 bg-teal-500 rounded-2xl flex items-center justify-center text-black shadow-[0_10px_30px_rgba(20,184,166,0.4)] transform rotate-12">
+                <ReactLogoIcon className="w-8 h-8 animate-[spin_15s_linear_infinite]" />
               </div>
             </div>
           </FadeInSection>
         </div>
-        <div className="absolute -bottom-10 right-0 text-[18vw] font-black text-white/[0.02] tracking-tighter select-none -z-10">
-          DEVELOPER
-        </div>
       </header>
 
-      {/* EXPERIENCE SECTION - Moved above About */}
-      <section id="experience" className="py-40 px-6 md:px-12 bg-white/[0.02]">
+      {/* EXPERIENCE SECTION */}
+      <section id="experience" className="py-40 px-6 md:px-12 bg-white/[0.01]">
         <div className="max-w-5xl mx-auto">
           <div className="mb-24 flex flex-col items-center text-center">
             <div className="w-px h-24 bg-gradient-to-b from-transparent to-teal-500 mb-8"></div>
@@ -463,7 +477,6 @@ export default function App() {
                     ))}
                   </div>
 
-                  {/* Decorative background number */}
                   <div className="absolute -bottom-10 -right-6 text-[10rem] font-black text-white/[0.03] select-none pointer-events-none group-hover:text-white/[0.05] transition-all">
                     {idx + 1}
                   </div>
@@ -521,7 +534,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER CTA */}
+      {/* FOOTER */}
       <footer id="contact" className="relative pt-40 pb-20 px-6 md:px-12 bg-black overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeInSection>
@@ -534,7 +547,7 @@ export default function App() {
               <div className="grid md:grid-cols-2 gap-16 items-start">
                 <div className="space-y-12">
                   <p className="text-2xl text-slate-400 font-light max-w-md leading-relaxed">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of something great..
+                    Currently accepting new projects and architectural consulting opportunities.
                   </p>
                   
                   <div className="group inline-flex items-center gap-6 cursor-pointer">
@@ -559,18 +572,16 @@ export default function App() {
                       GitHub <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
                     </a>
                   </div>
-                  
-                  <div className="text-right">
-                    <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-500 mb-1">Local Time</div>
-                    <div className="text-xl text-white font-mono">{new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })} PKT</div>
-                  </div>
                 </div>
               </div>
             </div>
           </FadeInSection>
 
           <div className="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="text-2xl font-black text-white">HA<span className="text-teal-500">.</span></div>
+            <div className="flex items-center gap-3">
+              <ReactLogoIcon className="w-6 h-6 text-teal-500 opacity-50" />
+              <div className="text-2xl font-black text-white">HA<span className="text-teal-500">.</span></div>
+            </div>
             <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-600 text-center">
               © {new Date().getFullYear()} DESIGNED & ARCHITECTED BY HUNAIN ASHFAQ
             </div>
@@ -578,12 +589,10 @@ export default function App() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="p-4 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
             >
-              <ChevronRight className="-rotate-90" />
+              <ChevronRight className="-rotate-90" size={20} />
             </button>
           </div>
         </div>
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-        <div className="absolute top-1/2 right-[-10%] w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[120px]"></div>
       </footer>
 
       {/* CUSTOM ANIMATIONS */}
