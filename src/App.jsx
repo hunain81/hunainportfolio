@@ -3,24 +3,15 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  ExternalLink, 
   ChevronRight, 
-  Code2, 
   Database, 
   Cpu, 
   Globe, 
   Map, 
   Smartphone,
-  Menu,
-  X,
-  FileText,
-  Briefcase,
-  GraduationCap,
-  ArrowUpRight,
-  Terminal,
   Layers,
-  Zap,
-  History
+  History,
+  ArrowUpRight
 } from 'lucide-react';
 
 /**
@@ -36,6 +27,7 @@ const DATA = {
     email: "hunainashfaq81@gmail.com",
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
+    image: "/mypic.jpg", // Path to your image in public folder
     summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems. Specialized in bridging the gap between System Architecture and Machine Learning to drive predictive operational efficiency."
   },
   about: {
@@ -137,7 +129,6 @@ const DATA = {
   }
 };
 
-// --- Interactive Background Components ---
 const InteractiveBackground = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   
@@ -151,7 +142,6 @@ const InteractiveBackground = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 bg-[#050505] overflow-hidden">
-      {/* Dynamic Mouse Glow */}
       <div 
         className="absolute w-[600px] h-[600px] rounded-full opacity-40 transition-all duration-300 ease-out mix-blend-screen"
         style={{
@@ -161,19 +151,14 @@ const InteractiveBackground = () => {
           filter: 'blur(80px)'
         }}
       />
-
-      {/* Floating Animated Blobs */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-teal-900/10 rounded-full blur-[120px] animate-blob-morph"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-emerald-900/10 rounded-full blur-[120px] animate-blob-morph animation-delay-2000"></div>
-
-      {/* Cinematic Grain/Noise */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
     </div>
   );
 };
 
-// --- Scroll Reveal Hook ---
-const useScrollReveal = () => {
+const FadeInSection = ({ children, className = "", delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef();
 
@@ -182,7 +167,7 @@ const useScrollReveal = () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) setIsVisible(true);
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     
     const { current } = domRef;
     if (current) observer.observe(current);
@@ -192,17 +177,12 @@ const useScrollReveal = () => {
     };
   }, []);
 
-  return [domRef, isVisible];
-};
-
-const FadeInSection = ({ children, className = "", delay = 0 }) => {
-  const [domRef, isVisible] = useScrollReveal();
   return (
     <div
       ref={domRef}
       style={{ transitionDelay: `${delay}ms` }}
       className={`transition-all duration-1000 transform ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       } ${className}`}
     >
       {children}
@@ -245,20 +225,45 @@ export default function App() {
 
       {/* HERO SECTION */}
       <header className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full">
+        <div className="max-w-7xl mx-auto w-full pt-20">
           <FadeInSection>
-            <div className="flex items-center gap-4 mb-6">
-               <div className="h-px w-12 bg-teal-500"></div>
-               <span className="text-teal-500 font-mono text-sm tracking-widest uppercase animate-pulse">Full Stack & Mobile Architecture</span>
-            </div>
-            
-            <div className="relative group mb-10">
-              <h1 className="text-[15vw] md:text-[12vw] font-black text-white leading-[0.8] tracking-tighter mix-blend-difference overflow-hidden">
-                <span className="inline-block animate-text-reveal">{DATA.profile.firstName}</span><br />
-                <span className="inline-block animate-text-reveal animation-delay-500 text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
-                  {DATA.profile.lastName}
-                </span>
-              </h1>
+            <div className="flex flex-col md:flex-row md:items-center gap-10 mb-12">
+              {/* Profile Image - Small proportion */}
+              <div className="relative shrink-0">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-teal-500/30 overflow-hidden bg-slate-900 group">
+                  <img 
+                    src={DATA.profile.image} 
+                    alt={DATA.profile.name} 
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
+                  />
+                  {/* Fallback Icon */}
+                  <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
+                    <span className="text-teal-500 font-black text-2xl">HA</span>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-black">
+                  <Cpu size={14} />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="h-px w-12 bg-teal-500"></div>
+                  <span className="text-teal-500 font-mono text-xs tracking-widest uppercase animate-pulse">Available for Architecture Consulting</span>
+                </div>
+                <div className="relative">
+                  <h1 className="text-[12vw] md:text-[8vw] font-black text-white leading-[0.8] tracking-tighter mix-blend-difference overflow-hidden">
+                    <span className="inline-block animate-text-reveal">{DATA.profile.firstName}</span><br />
+                    <span className="inline-block animate-text-reveal animation-delay-500 text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
+                      {DATA.profile.lastName}
+                    </span>
+                  </h1>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
@@ -268,10 +273,10 @@ export default function App() {
               
               <div className="flex flex-col gap-6">
                 <div className="flex gap-4">
-                  <a href={DATA.profile.github} target="_blank" className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
+                  <a href={DATA.profile.github} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
                     <Github className="group-hover:rotate-12 transition-transform" />
                   </a>
-                  <a href={DATA.profile.linkedin} target="_blank" className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white transition-all group">
+                  <a href={DATA.profile.linkedin} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white transition-all group">
                     <Linkedin className="group-hover:scale-110 transition-transform" />
                   </a>
                 </div>
@@ -279,8 +284,6 @@ export default function App() {
             </div>
           </FadeInSection>
         </div>
-        
-        {/* Floating Background Text */}
         <div className="absolute -bottom-10 right-0 text-[18vw] font-black text-white/[0.02] tracking-tighter select-none -z-10">
           DEVELOPER
         </div>
@@ -323,10 +326,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* EXPERIENCE SECTION WITH TIMELINE HEADER */}
+      {/* EXPERIENCE SECTION */}
       <section id="experience" className="py-40 px-6 md:px-12 bg-white/[0.02]">
         <div className="max-w-5xl mx-auto">
-          {/* TIMELINE HEADER */}
           <div className="mb-24 flex flex-col items-center text-center">
             <div className="w-px h-24 bg-gradient-to-b from-transparent to-teal-500 mb-8"></div>
             <div className="flex items-center gap-3 text-teal-500 font-mono text-sm tracking-[0.4em] uppercase mb-4">
@@ -336,11 +338,8 @@ export default function App() {
             <div className="text-5xl md:text-7xl font-black text-white tracking-tighter">Professional History</div>
           </div>
           
-          {/* EXPERIENCE LIST */}
           <div className="space-y-32 relative">
-            {/* Visual Timeline Bar */}
             <div className="absolute left-[7px] md:left-[100px] top-0 bottom-0 w-px bg-white/10 hidden md:block"></div>
-            
             {DATA.experience.map((exp, idx) => (
               <FadeInSection key={idx}>
                 <div className="grid md:grid-cols-[200px_1fr] gap-12 group relative">
@@ -348,7 +347,6 @@ export default function App() {
                     <div className="text-teal-500 font-black text-xl tracking-tighter pt-1 opacity-60 group-hover:opacity-100 transition-opacity">
                       {exp.period}
                     </div>
-                    {/* Timeline Node */}
                     <div className="absolute right-[-106px] top-3 w-3 h-3 rounded-full bg-teal-500 hidden md:block border-4 border-[#050505] z-10 group-hover:scale-150 transition-transform"></div>
                   </div>
                   <div>
@@ -371,7 +369,7 @@ export default function App() {
       </section>
 
       {/* FOOTER CTA */}
-<footer id="contact" className="relative pt-40 pb-20 px-6 md:px-12 bg-black overflow-hidden">
+      <footer id="contact" className="relative pt-40 pb-20 px-6 md:px-12 bg-black overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <FadeInSection>
             <div className="mb-24">
@@ -402,10 +400,10 @@ export default function App() {
                 <div className="flex flex-col md:items-end gap-12">
                   <div className="flex flex-wrap gap-8 md:justify-end">
                     <a href={DATA.profile.linkedin} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
-                      LinkedIn <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      LinkedIn <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
                     </a>
                     <a href={DATA.profile.github} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
-                      GitHub <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      GitHub <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
                     </a>
                   </div>
                   
@@ -420,7 +418,7 @@ export default function App() {
 
           <div className="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-2xl font-black text-white">HA<span className="text-teal-500">.</span></div>
-            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-600">
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-600 text-center">
               © {new Date().getFullYear()} DESIGNED & ARCHITECTED BY HUNAIN ASHFAQ
             </div>
             <button 
@@ -431,8 +429,6 @@ export default function App() {
             </button>
           </div>
         </div>
-        
-        {/* Decorative background elements matching the image style */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute top-1/2 right-[-10%] w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[120px]"></div>
       </footer>
