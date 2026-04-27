@@ -81,10 +81,30 @@ const DATA = {
     }
   ],
   skills: [
-    { name: "Frontend", items: ["React.js", "React Native", "TypeScript", "Redux", "Tailwind CSS"], icon: <Smartphone className="w-5 h-5" /> },
-    { name: "Backend", items: ["Node.js", "Express", "Python", "PHP", "SQL"], icon: <Database className="w-5 h-5" /> },
-    { name: "Specialized", items: ["Machine Learning", "GIS Integration", "API Design", "WBS"], icon: <Cpu className="w-5 h-5" /> },
-    { name: "Cloud & Dev", items: ["AWS", "Azure", "Git", "Agile (Scrum/Kanban)"], icon: <Globe className="w-5 h-5" /> }
+    { 
+      name: "Mobile & Core", 
+      items: ["React Native", "Expo", "iOS", "Android", "TypeScript", "JavaScript"], 
+      icon: <MonitorSmartphone className="w-6 h-6 text-teal-500" />,
+      color: "from-teal-500/20 to-transparent"
+    },
+    { 
+      name: "Frontend", 
+      items: ["React.js", "Redux", "Tailwind CSS", "Figma"], 
+      icon: <Palette className="w-6 h-6 text-emerald-500" />,
+      color: "from-emerald-500/20 to-transparent"
+    },
+    { 
+      name: "Backend", 
+      items: ["Node.js", "Express", "Python", "FastAPI", "Flask", "PHP"], 
+      icon: <Terminal className="w-6 h-6 text-cyan-500" />,
+      color: "from-cyan-500/20 to-transparent"
+    },
+    { 
+      name: "Data & DevOps", 
+      items: ["MongoDB", "Firebase", "SQL", "Git", "AWS", "Azure"], 
+      icon: <Cloud className="w-6 h-6 text-blue-500" />,
+      color: "from-blue-500/20 to-transparent"
+    }
   ],
   experience: [
     {
@@ -352,6 +372,44 @@ export default function App() {
                     ))}
                   </div>
                 </a>
+              </FadeInSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TECH STACK SECTION */}
+      <section id="stack" className="py-40 px-6 md:px-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center mb-20">
+            <h2 className="text-teal-500 font-mono text-sm tracking-[0.4em] uppercase mb-4">Core Competencies</h2>
+            <div className="text-5xl md:text-7xl font-black text-white tracking-tighter">The Tech Stack</div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DATA.skills.map((skillGroup, idx) => (
+              <FadeInSection key={idx} delay={idx * 100}>
+                <div className={`h-full p-8 rounded-[2.5rem] bg-gradient-to-br ${skillGroup.color} border border-white/5 relative overflow-hidden group hover:border-white/20 transition-all`}>
+                  <div className="mb-8 relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                      {skillGroup.icon}
+                    </div>
+                    <h3 className="text-xl font-black text-white tracking-tighter uppercase mb-4">{skillGroup.name}</h3>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 relative z-10">
+                    {skillGroup.items.map((item, i) => (
+                      <span key={i} className="px-4 py-2 bg-black/30 border border-white/5 rounded-xl text-[11px] font-bold text-slate-400 hover:text-white hover:border-white/20 transition-all">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Decorative background number */}
+                  <div className="absolute -bottom-10 -right-6 text-[10rem] font-black text-white/[0.03] select-none pointer-events-none group-hover:text-white/[0.05] transition-all">
+                    {idx + 1}
+                  </div>
+                </div>
               </FadeInSection>
             ))}
           </div>
