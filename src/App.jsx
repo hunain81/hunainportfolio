@@ -27,8 +27,8 @@ const DATA = {
     email: "hunainashfaq81@gmail.com",
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
-    image: "/mypic.png", // Path to your image in public folder
-    summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems. Specialized in bridging the gap between System Architecture and Machine Learning to drive predictive operational efficiency."
+   image: "/mypic.png", // Ensure your image is in /public/mypic.jpg
+    summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems."
   },
   about: {
     story: "My journey in engineering is driven by a singular goal: transforming complex chaos into elegant, scalable systems. With a foundation in Computer Science and a deep specialty in the React ecosystem, I've moved beyond writing simple code to architecting entire digital landscapes.",
@@ -224,22 +224,53 @@ export default function App() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <header className="relative min-h-screen flex flex-col justify-center px-6 md:px-12 z-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full pt-20">
-          <FadeInSection>
-            <div className="flex flex-col md:flex-row md:items-center gap-10 mb-12">
-              {/* Profile Image - Small proportion */}
-              <div className="relative shrink-0">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full border-2 border-teal-500/30 overflow-hidden bg-slate-900 group">
-                  <img 
-                    src={DATA.profile.image} 
-                    alt={DATA.profile.name} 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
+       <header className="relative min-h-screen flex items-center px-6 md:px-12 z-10 pt-20">
+        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+          
+          {/* Text Content (Left) */}
+          <FadeInSection className="order-2 md:order-1">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-[2px] w-12 bg-teal-500"></div>
+              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Architect</span>
+            </div>
+            <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8">
+              {DATA.profile.firstName}<br />
+              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
+                {DATA.profile.lastName}
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-400 font-light max-w-xl leading-relaxed mb-10">
+              Building high-performance <span className="text-white font-medium">React Native</span> apps and scalable digital ecosystems that drive enterprise efficiency.
+            </p>
+            <div className="flex gap-4">
+              <a href={DATA.profile.github} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
+                <Github />
+              </a>
+              <a href={DATA.profile.linkedin} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all group">
+                <Linkedin />
+              </a>
+            </div>
+          </FadeInSection>
+
+          {/* Large Profile Picture (Right) */}
+          <FadeInSection className="order-1 md:order-2 flex justify-center md:justify-end" delay={300}>
+            <div className="relative group">
+              {/* Outer Decorative Ring */}
+              <div className="absolute -inset-4 border border-teal-500/20 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
+              <div className="absolute -inset-4 border border-white/10 rounded-2xl -rotate-3 group-hover:-rotate-12 transition-transform duration-700"></div>
+              
+              {/* Image Container */}
+              <div className="relative w-64 h-80 md:w-80 md:h-[450px] bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={DATA.profile.image} 
+                  alt={DATA.profile.name} 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                
                   {/* Fallback Icon */}
                   <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
                     <span className="text-teal-500 font-black text-2xl">HA</span>
@@ -262,23 +293,6 @@ export default function App() {
                       {DATA.profile.lastName}
                     </span>
                   </h1>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
-              <p className="text-xl md:text-3xl text-slate-400 font-light max-w-2xl leading-tight">
-                Full Stack Developer & <span className="text-white font-medium border-b-2 border-teal-500/50">React Native Expert</span> delivering high-performance mobile and web ecosystems.
-              </p>
-              
-              <div className="flex flex-col gap-6">
-                <div className="flex gap-4">
-                  <a href={DATA.profile.github} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
-                    <Github className="group-hover:rotate-12 transition-transform" />
-                  </a>
-                  <a href={DATA.profile.linkedin} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:text-white transition-all group">
-                    <Linkedin className="group-hover:scale-110 transition-transform" />
-                  </a>
                 </div>
               </div>
             </div>
