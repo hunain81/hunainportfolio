@@ -36,9 +36,8 @@ const DATA = {
     email: "hunainashfaq81@gmail.com",
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
-    summary: "Innovative Senior JavaScript Developer with 3+ years of experience in architecting full-stack web and mobile solutions. Expert in the React ecosystem (React.js/React Native) and Node.js, with a specialized background in integrating Machine Learning for predictive analytics.",
     // Replace this URL with your actual hosted image path
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000", 
+     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000", 
     summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems. Specialized in bridging the gap between System Architecture and Machine Learning to drive predictive operational efficiency."
   },
   about: {
@@ -61,7 +60,6 @@ const DATA = {
       }
     ]
   },
-
   projects: [
     {
       title: "PropTech CRM & ERP",
