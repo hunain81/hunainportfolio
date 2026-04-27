@@ -286,7 +286,7 @@ export default function App() {
               <div className="bg-[#111] p-1.5 rounded-md border border-teal-500/20">
                 <ReactLogoIcon className="w-4 h-4 text-teal-500" />
               </div>
-              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer</span>
+              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer (JS, React Native)</span>
             </div>
             
             <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8 overflow-hidden">
