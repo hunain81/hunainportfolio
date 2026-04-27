@@ -270,16 +270,14 @@ export default function App() {
                     e.target.nextSibling.style.display = 'flex';
                   }}
                 />
-                
+              </div>
                   {/* Fallback Icon */}
                   <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
                     <span className="text-teal-500 font-black text-2xl">HA</span>
                   </div>
-                </div>
                 <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-black">
                   <Cpu size={14} />
                 </div>
-              </div>
 
               <div>
                 <div className="flex items-center gap-4 mb-4">
@@ -295,7 +293,6 @@ export default function App() {
                   </h1>
                 </div>
               </div>
-            </div>
           </FadeInSection>
         </div>
         <div className="absolute -bottom-10 right-0 text-[18vw] font-black text-white/[0.02] tracking-tighter select-none -z-10">
