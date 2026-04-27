@@ -37,7 +37,31 @@ const DATA = {
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
     summary: "Innovative Senior JavaScript Developer with 3+ years of experience in architecting full-stack web and mobile solutions. Expert in the React ecosystem (React.js/React Native) and Node.js, with a specialized background in integrating Machine Learning for predictive analytics."
+    // Replace this URL with your actual hosted image path
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1000", 
+    summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems. Specialized in bridging the gap between System Architecture and Machine Learning to drive predictive operational efficiency."
   },
+  about: {
+    story: "My journey in engineering is driven by a singular goal: transforming complex chaos into elegant, scalable systems. With a foundation in Computer Science and a deep specialty in the React ecosystem, I've moved beyond writing simple code to architecting entire digital landscapes.",
+    points: [
+      {
+        title: "React Native Specialist",
+        desc: "Expert in building high-performance, cross-platform mobile ecosystems with complex state management, custom native modules, and seamless API integrations.",
+        icon: <Smartphone className="text-teal-500" />
+      },
+      {
+        title: "Full Stack Development",
+        desc: "Specialized in the MERN stack and modern cloud architectures. I build secure, scalable backends that power interactive, high-concurrency user interfaces.",
+        icon: <Layers className="text-emerald-500" />
+      },
+      {
+        title: "Intelligence & GIS",
+        desc: "Unique expertise in integrating Machine Learning models and GIS spatial data into ERP systems to drive automated, data-driven decision making.",
+        icon: <Map className="text-cyan-500" />
+      }
+    ]
+  },
+
   projects: [
     {
       title: "PropTech CRM & ERP",
@@ -351,32 +375,70 @@ export default function App() {
       </section>
 
       {/* FOOTER CTA */}
-      <footer className="py-40 px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-teal-500 rounded-[4rem] p-16 md:p-32 text-center text-slate-950 group relative overflow-hidden">
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-            <FadeInSection>
-              <h2 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] mb-12 uppercase">Build the <br />Future Together.</h2>
-              <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-                <a 
-                  href={`mailto:${DATA.profile.email}`}
-                  className="px-12 py-6 bg-slate-950 text-white font-black rounded-3xl hover:scale-110 transition-transform shadow-2xl"
-                >
-                  HIRE ME NOW
-                </a>
-                <div className="flex gap-6">
-                  <a href={DATA.profile.github} target="_blank" className="text-slate-950 hover:scale-125 transition-transform"><Github size={32} /></a>
-                  <a href={DATA.profile.linkedin} target="_blank" className="text-slate-950 hover:scale-125 transition-transform"><Linkedin size={32} /></a>
+<footer id="contact" className="relative pt-40 pb-20 px-6 md:px-12 bg-black overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <FadeInSection>
+            <div className="mb-24">
+              <h2 className="text-[12vw] md:text-[8vw] font-black text-white tracking-tighter leading-[0.85] mb-8">
+                LET'S WORK<br />
+                <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.4)' }}>TOGETHER.</span>
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-16 items-start">
+                <div className="space-y-12">
+                  <p className="text-2xl text-slate-400 font-light max-w-md leading-relaxed">
+                    Currently accepting new projects and architectural consulting opportunities.
+                  </p>
+                  
+                  <div className="group inline-flex items-center gap-6 cursor-pointer">
+                    <div className="w-16 h-16 rounded-full bg-teal-500 flex items-center justify-center group-hover:scale-110 transition-all">
+                      <Mail className="text-black" />
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-500 mb-1">Send an email</div>
+                      <a href={`mailto:${DATA.profile.email}`} className="text-2xl md:text-3xl font-bold text-white hover:text-teal-500 transition-colors">
+                        {DATA.profile.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:items-end gap-12">
+                  <div className="flex flex-wrap gap-8 md:justify-end">
+                    <a href={DATA.profile.linkedin} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
+                      LinkedIn <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                    <a href={DATA.profile.github} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
+                      GitHub <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </a>
+                  </div>
+                  
+                  <div className="text-right">
+                    <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-slate-500 mb-1">Local Time</div>
+                    <div className="text-xl text-white font-mono">{new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })} PKT</div>
+                  </div>
                 </div>
               </div>
-            </FadeInSection>
-          </div>
-          
-          <div className="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-            <div className="text-3xl font-black text-white uppercase tracking-tighter">HA<span className="text-teal-500">.</span></div>
-            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-600 text-center">© {new Date().getFullYear()} HUNAIN ASHFAQ • REACT NATIVE EXPERT</p>
+            </div>
+          </FadeInSection>
+
+          <div className="pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-2xl font-black text-white">HA<span className="text-teal-500">.</span></div>
+            <div className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-600">
+              © {new Date().getFullYear()} DESIGNED & ARCHITECTED BY HUNAIN ASHFAQ
+            </div>
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="p-4 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
+            >
+              <ChevronRight className="-rotate-90" />
+            </button>
           </div>
         </div>
+        
+        {/* Decorative background elements matching the image style */}
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div className="absolute top-1/2 right-[-10%] w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[120px]"></div>
       </footer>
 
       {/* CUSTOM ANIMATIONS */}
