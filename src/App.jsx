@@ -27,7 +27,7 @@ const DATA = {
     email: "hunainashfaq81@gmail.com",
     linkedin: "https://www.linkedin.com/in/hunain-ashfaq/",
     github: "https://github.com/hunain81/",
-   image: "/mypic.png", // Ensure your image is in /public/mypic.jpg
+    image: "/mypic.png", 
     summary: "Strategic Full Stack Architect with 3+ years of mastery in the JavaScript ecosystem. Expert in crafting high-concurrency mobile applications with React Native and scalable web systems."
   },
   about: {
@@ -153,7 +153,7 @@ const InteractiveBackground = () => {
       />
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-teal-900/10 rounded-full blur-[120px] animate-blob-morph"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-emerald-900/10 rounded-full blur-[120px] animate-blob-morph animation-delay-2000"></div>
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
     </div>
   );
 };
@@ -224,29 +224,32 @@ export default function App() {
       <Navbar />
 
       {/* HERO SECTION */}
-       <header className="relative min-h-screen flex items-center px-6 md:px-12 z-10 pt-20">
+      <header className="relative min-h-screen flex items-center px-6 md:px-12 z-10 pt-20">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
           
           {/* Text Content (Left) */}
           <FadeInSection className="order-2 md:order-1">
             <div className="flex items-center gap-4 mb-6">
               <div className="h-[2px] w-12 bg-teal-500"></div>
-              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Architect</span>
+              <span className="text-teal-500 font-mono text-xs tracking-widest uppercase">Full Stack Developer(Js, React Native)</span>
             </div>
-            <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8">
-              {DATA.profile.firstName}<br />
-              <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
+            
+            <h1 className="text-[12vw] md:text-[7vw] font-black text-white leading-[0.85] tracking-tighter mb-8 overflow-hidden">
+              <span className="inline-block animate-text-reveal">{DATA.profile.firstName}</span><br />
+              <span className="inline-block animate-text-reveal animation-delay-500 text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
                 {DATA.profile.lastName}
               </span>
             </h1>
+
             <p className="text-xl md:text-2xl text-slate-400 font-light max-w-xl leading-relaxed mb-10">
               Building high-performance <span className="text-white font-medium">React Native</span> apps and scalable digital ecosystems that drive enterprise efficiency.
             </p>
+            
             <div className="flex gap-4">
-              <a href={DATA.profile.github} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
+              <a href={DATA.profile.github} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all group">
                 <Github />
               </a>
-              <a href={DATA.profile.linkedin} target="_blank" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all group">
+              <a href={DATA.profile.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-teal-500 hover:border-teal-500 hover:text-white transition-all group">
                 <Linkedin />
               </a>
             </div>
@@ -255,50 +258,67 @@ export default function App() {
           {/* Large Profile Picture (Right) */}
           <FadeInSection className="order-1 md:order-2 flex justify-center md:justify-end" delay={300}>
             <div className="relative group">
-              {/* Outer Decorative Ring */}
               <div className="absolute -inset-4 border border-teal-500/20 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
               <div className="absolute -inset-4 border border-white/10 rounded-2xl -rotate-3 group-hover:-rotate-12 transition-transform duration-700"></div>
               
-              {/* Image Container */}
-              <div className="relative w-64 h-80 md:w-80 md:h-[450px] bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative w-64 h-80 md:w-80 md:h-[450px] bg-slate-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center">
                 <img 
                   src={DATA.profile.image} 
                   alt={DATA.profile.name} 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   onError={(e) => {
                     e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
+                    e.target.nextSibling.classList.remove('hidden');
+                    e.target.nextSibling.classList.add('flex');
                   }}
                 />
-              </div>
-                  {/* Fallback Icon */}
-                  <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
-                    <span className="text-teal-500 font-black text-2xl">HA</span>
-                  </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-black">
-                  <Cpu size={14} />
-                </div>
-
-              <div>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="h-px w-12 bg-teal-500"></div>
-                  <span className="text-teal-500 font-mono text-xs tracking-widest uppercase animate-pulse">Available for Architecture Consulting</span>
-                </div>
-                <div className="relative">
-                  <h1 className="text-[12vw] md:text-[8vw] font-black text-white leading-[0.8] tracking-tighter mix-blend-difference overflow-hidden">
-                    <span className="inline-block animate-text-reveal">{DATA.profile.firstName}</span><br />
-                    <span className="inline-block animate-text-reveal animation-delay-500 text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
-                      {DATA.profile.lastName}
-                    </span>
-                  </h1>
+                {/* Fallback UI */}
+                <div className="hidden absolute inset-0 items-center justify-center bg-slate-800">
+                  <span className="text-teal-500 font-black text-6xl opacity-20">HA</span>
                 </div>
               </div>
+              <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center text-black shadow-xl">
+                <Cpu size={20} />
+              </div>
+            </div>
           </FadeInSection>
         </div>
         <div className="absolute -bottom-10 right-0 text-[18vw] font-black text-white/[0.02] tracking-tighter select-none -z-10">
           DEVELOPER
         </div>
       </header>
+
+      {/* ABOUT SECTION */}
+      <section id="about" className="py-40 px-6 md:px-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-[1fr_1.5fr] gap-20 items-start">
+            <FadeInSection>
+              <h2 className="text-teal-500 font-mono text-sm tracking-[0.4em] uppercase mb-4">The Philosophy</h2>
+              <div className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-8 leading-tight">Engineering Elegance.</div>
+            </FadeInSection>
+            
+            <FadeInSection delay={200}>
+              <p className="text-2xl text-slate-400 font-light leading-relaxed mb-12">
+                {DATA.about.story}
+              </p>
+              
+              <div className="grid sm:grid-cols-1 gap-8">
+                {DATA.about.points.map((point, i) => (
+                  <div key={i} className="flex gap-6 p-8 bg-white/[0.03] border border-white/5 rounded-3xl group hover:border-teal-500/30 transition-all">
+                    <div className="shrink-0 w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center group-hover:scale-110 transition-transform">
+                      {point.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-white mb-2">{point.title}</h4>
+                      <p className="text-slate-400 leading-relaxed font-light">{point.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
 
       {/* PROJECTS SECTION */}
       <section id="projects" className="py-40 px-6 md:px-12 relative">
@@ -314,6 +334,7 @@ export default function App() {
                 <a 
                   href={project.link} 
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="group block relative p-10 bg-slate-900/30 border border-white/5 rounded-[3rem] hover:bg-slate-900/60 transition-all overflow-hidden"
                 >
                   <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-20 transition-opacity">
@@ -410,10 +431,10 @@ export default function App() {
 
                 <div className="flex flex-col md:items-end gap-12">
                   <div className="flex flex-wrap gap-8 md:justify-end">
-                    <a href={DATA.profile.linkedin} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
+                    <a href={DATA.profile.linkedin} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
                       LinkedIn <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
                     </a>
-                    <a href={DATA.profile.github} target="_blank" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
+                    <a href={DATA.profile.github} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 text-xl font-bold text-white hover:text-teal-500 transition-all">
                       GitHub <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={20} />
                     </a>
                   </div>
